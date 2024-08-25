@@ -2,12 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Import CORS
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors()); // Use CORS middleware
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, { 
@@ -96,7 +98,6 @@ app.get('/bfhl', (req, res) => {
 app.get('/', (req, res) => {
     res.json("Hello");
   });
-  
 
 // Start the server
 app.listen(PORT, () => {
